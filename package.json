@@ -1,6 +1,6 @@
 {
   "name": "@rewind-media/rewind-protocol",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "license": "AGPLv3",
   "description": "Common protocol models for the public API of the rewind-media project",
   "repository": {
@@ -19,7 +19,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "pub": "npm version patch && npm publish"
   },
   "eslintConfig": {},
   "devDependencies": {
@@ -30,5 +31,5 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist"]
+  "files": ["./dist/**"]
 }
