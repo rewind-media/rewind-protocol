@@ -62,11 +62,14 @@ export interface ImageInfo extends FileInfo {}
 export interface ShowEpisodeInfo extends MediaInfo {
   readonly showId: string;
   readonly seasonId: string;
+  readonly episodeImageId?: string;
 }
 
 export interface SeriesInfo extends LibraryData {
   readonly id: string;
   readonly showName: string;
+  readonly seriesImageId?: string;
+  readonly seriesBackdropImageId?: string;
 }
 
 export interface ShowSeasonInfo extends LibraryData {
