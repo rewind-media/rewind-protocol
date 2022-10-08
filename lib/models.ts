@@ -44,13 +44,13 @@ export enum LibraryType {
 
 export interface LibraryData {
   readonly libraryName: string;
+  readonly lastUpdated: Date;
 }
 
 export interface FileInfo extends LibraryData {
   readonly name: string;
   readonly id: string;
   readonly path: string;
-  readonly lastUpdated: Date;
 }
 
 export interface MediaInfo extends FileInfo {
