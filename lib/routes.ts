@@ -3,17 +3,17 @@ export namespace ServerRoutes {
 
   export namespace Api {
     export namespace Auth {
-      export const root = `${ServerRoutes.root}auth`
+      export const root = `${ServerRoutes.root}auth`;
       export const login = `${root}/login`;
       export const logout = `${root}/logout`;
       export const verify = `${root}/verify`;
     }
 
     export namespace Stream {
-      export const root = `${ServerRoutes.root}streams`
-      export const m3u8FileName = `stream.m3u8`
-      export const initMp4FileName = `init-stream.mp4`
-      export const segmentFileExt = `.m4s`
+      export const root = `${ServerRoutes.root}streams`;
+      export const m3u8FileName = `stream.m3u8`;
+      export const initMp4FileName = `init-stream.mp4`;
+      export const segmentFileExt = `.m4s`;
       export const m3u8 = `${root}/:id/${m3u8FileName}`;
       export const initMp4 = `${root}/:id/${initMp4FileName}`;
       export const segment = `${root}/:id/:segment${segmentFileExt}`;
@@ -24,7 +24,7 @@ export namespace ServerRoutes {
     }
 
     export namespace Image {
-      export const root = `${ServerRoutes.root}image`
+      export const root = `${ServerRoutes.root}image`;
       export const image = `${root}/:id`;
       export function formatImagePath(imageId: string) {
         return `/image/${imageId}`;
