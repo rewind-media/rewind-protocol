@@ -19,7 +19,7 @@
   },
   "scripts": {
     "prettier": "npx prettier --write .",
-    "update": "npm update --save && git add package.json && git commit -m 'Dependency updates'",
+    "update": "npm update --save && ! git diff --exit-code package.json  > /dev/null && git add package.json && git commit -m 'Dependency updates'",
     "build": "npm run prettier && tsc",
     "clean": "rm -rf dist",
     "pub": "npm run clean && npm run build && npm version patch && npm publish"
