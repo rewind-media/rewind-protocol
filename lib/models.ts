@@ -96,11 +96,36 @@ export interface ShowEpisodeInfo extends MediaInfo {
   readonly details?: EpisodeDetails;
 }
 
+export interface SeriesDetails {
+  readonly plot?: string;
+  readonly outline?: string;
+  readonly dateadded?: string; // TODO should be a Date
+  readonly title?: string;
+  readonly originaltitle?: string;
+  readonly rating?: number;
+  readonly year?: number;
+  readonly mpaa?: string; // TODO could probably be an enum
+  readonly imdb_id?: string;
+  readonly tmdbid?: string;
+  readonly tvdbid?: string;
+  readonly tvrageid?: string;
+  readonly premiered?: string; // TODO should be a Date
+  readonly releasedate?: string; // TODO should be a Date
+  readonly enddate?: string; // TODO should be a Date
+  readonly runtime?: number;
+  readonly genere?: string;
+  readonly studio?: string;
+  readonly tag?: string[];
+  readonly actor?: Actor[];
+  readonly status?: string;
+}
+
 export interface SeriesInfo extends LibraryData {
   readonly id: string;
   readonly showName: string;
   readonly seriesImageId?: string;
   readonly seriesBackdropImageId?: string;
+  readonly details?: SeriesDetails;
 }
 
 export interface ShowSeasonInfo extends LibraryData {
