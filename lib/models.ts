@@ -1,8 +1,8 @@
 import { FFProbeResult } from "ffprobe";
 
 export interface FfProbeInfoFormat {
-  duration?: number;
-  filename?: string;
+  readonly duration?: number;
+  readonly filename?: string;
 }
 
 export interface FfProbeInfo extends FFProbeResult {
@@ -10,7 +10,7 @@ export interface FfProbeInfo extends FFProbeResult {
 }
 
 export interface UserPermissions {
-  isAdmin: boolean;
+  readonly isAdmin: boolean;
 }
 
 export interface StreamProps {
@@ -59,10 +59,41 @@ export interface MediaInfo extends FileInfo {
 
 export interface ImageInfo extends FileInfo {}
 
+export interface Actor {
+  readonly name: string;
+  readonly role: string;
+}
+
+export interface EpisodeDetails {
+  readonly plot?: string;
+  readonly outline?: string;
+  readonly title?: string;
+  readonly director?: string;
+  readonly writer?: string[];
+  readonly credits?: string[];
+  readonly rating?: number;
+  readonly year?: number;
+  readonly runtime?: number;
+  readonly actor?: Actor[];
+  readonly episode?: number;
+  readonly episodenumberend?: number;
+  readonly season?: number;
+  readonly aired?: string; // TODO should be date
+}
+
+export interface SeasonDetails {
+  readonly year?: number;
+  readonly premiered?: string;
+  readonly releasedate?: string;
+  readonly seasonnumber?: number;
+  readonly actor?: Actor[];
+}
+
 export interface ShowEpisodeInfo extends MediaInfo {
   readonly showId: string;
   readonly seasonId: string;
   readonly episodeImageId?: string;
+  readonly details?: EpisodeDetails;
 }
 
 export interface SeriesInfo extends LibraryData {
@@ -77,6 +108,7 @@ export interface ShowSeasonInfo extends LibraryData {
   readonly showId: string;
   readonly seasonName: string;
   readonly folderImageId?: string;
+  readonly details?: SeasonDetails;
 }
 
 export interface HlsStreamProps {
