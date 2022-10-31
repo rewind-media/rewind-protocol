@@ -1,6 +1,6 @@
 {
   "name": "@rewind-media/rewind-protocol",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "license": "AGPLv3",
   "description": "Common protocol models for the public API of the rewind-media project",
   "repository": {
