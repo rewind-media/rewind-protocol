@@ -89,7 +89,7 @@ export interface SeasonDetails {
   readonly actor?: Actor[];
 }
 
-export interface ShowEpisodeInfo extends MediaInfo {
+export interface EpisodeInfo extends MediaInfo {
   readonly showId: string;
   readonly seasonId: string;
   readonly episodeImageId?: string;
@@ -120,7 +120,7 @@ export interface SeriesDetails {
   readonly status?: string;
 }
 
-export interface SeriesInfo extends LibraryData {
+export interface ShowInfo extends LibraryData {
   readonly id: string;
   readonly showName: string;
   readonly seriesImageId?: string;
@@ -128,7 +128,7 @@ export interface SeriesInfo extends LibraryData {
   readonly details?: SeriesDetails;
 }
 
-export interface ShowSeasonInfo extends LibraryData {
+export interface SeasonInfo extends LibraryData {
   readonly id: string;
   readonly showId: string;
   readonly seasonName: string;
