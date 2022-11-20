@@ -25,22 +25,26 @@ export namespace ServerRoutes {
       const root = `${Api.root}/user`;
 
       export const list = `${root}/list`;
+
       export interface ListResponse {
         readonly users: User[];
       }
 
       export const create = `${root}/create`;
+
       export interface CreateRequest {
         readonly user: ClientUser;
         readonly password: string;
       }
 
       export const del = `${root}/delete`;
+
       export interface DeleteRequest {
         readonly usernames: string[];
       }
 
       export const changePassword = `${root}/changePassword`;
+
       export interface ChangePasswordRequest {
         readonly oldPassword: string;
         readonly newPassword: string;
@@ -173,38 +177,31 @@ export namespace ServerRoutes {
 
   export namespace Web {
     export const root = `${ServerRoutes.root}/web`;
-    export namespace Home {
-      export const root = `${Web.root}/home`;
+    export namespace Private {
+      export const root = `${Web.root}/private`;
+      export namespace Browse {
+        export const root = `${Private.root}/browse`;
+        export const home = `${root}/home`;
+        export const show = `${root}/show/:show`;
+        export const season = `${root}/season/:season`;
+        export const episode = `${root}/episode/:episode`;
 
-      export namespace Browser {
-        export const root = `${Home.root}/browser`;
+        export const formatShowRoute = (showId: string) =>
+          show.replace(":show", showId);
+        export const formatSeasonRoute = (seasonId: string) =>
+          season.replace(":season", seasonId);
+        export const formatEpisodeRoute = (library: string) =>
+          episode.replace(":episode", library);
 
-        export namespace Shows {
-          export const root = `${Browser.root}/shows`;
-          export const library = `${root}/library/:library`;
-          export const show = `${root}/show/:show`;
-          export const season = `${root}/season/:season`;
-          export const episode = `${root}/episode/:episode`;
-
-          export function formatLibraryRoot(library: string) {
-            return `${root}/library/${library}`;
-          }
-
-          export function formatShowRoute(showId: string) {
-            return `${root}/show/${showId}`;
-          }
-
-          export function formatSeasonRoute(seasonId: string) {
-            return `${root}/season/${seasonId}`;
-          }
-
-          export function formatEpisodeRoute(episodeId: string) {
-            return `${root}/episode/${episodeId}`;
-          }
+        export namespace Library {
+          export const root = `${Browse.root}/lib/:library`;
+          export const show = `${root}/show`;
+          export const formatShowRoute = (libraryId: string) =>
+            show.replace(":library", libraryId);
         }
 
         export namespace Settings {
-          export const root = `${Browser.root}/settings`;
+          export const root = `${Browse.root}/settings`;
           export const client = `${root}/client`;
           export const user = `${root}/user`;
 
@@ -215,13 +212,16 @@ export namespace ServerRoutes {
         }
       }
 
-      export const player = `${root}/player/:library/:id`;
-
-      export function formatPlayerRoute(library: string, id: string) {
-        return `${root}/player/${library}/${id}`;
+      export namespace View {
+        export const root = `${Private.root}/view`;
+        export const show = `${root}/show/:library/:id`;
+        export const formatPlayerRoute = (library: string, id: string) =>
+          `${root}/show/${library}/${id}`;
       }
     }
-
-    export const login = `${root}/login`;
+    export namespace Auth {
+      export const root = `${Web.root}/auth`;
+      export const login = `${root}/login`;
+    }
   }
 }
