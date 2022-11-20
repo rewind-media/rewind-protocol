@@ -47,10 +47,19 @@ export interface LibraryData {
   readonly lastUpdated: Date;
 }
 
+export interface LocalPath {
+  localPath: string;
+}
+
+export type FileLocation = LocalPath;
+export function isLocalPath(t: FileLocation): t is LocalPath {
+  return !!t.localPath;
+}
+
 export interface FileInfo extends LibraryData {
   readonly name: string;
   readonly id: string;
-  readonly path: string;
+  readonly location: FileLocation;
 }
 
 export interface MediaInfo extends FileInfo {
