@@ -13,7 +13,10 @@ export class HttpClient {
     fetch(ServerRoutes.Api.Episode.formatGetPath(episodeId))
       .then((it) => it.json())
       .then((it) => it as ServerRoutes.Api.Episode.GetResponse);
-
+  static getLibrary = (libraryId: string) =>
+    fetch(ServerRoutes.Api.Library.formatGetPath(libraryId))
+      .then((it) => it.json())
+      .then((it) => it as ServerRoutes.Api.Library.GetResponse);
   static listLibraries = () =>
     fetch(ServerRoutes.Api.Library.list)
       .then((it) => it.json())
