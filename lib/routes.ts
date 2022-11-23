@@ -15,6 +15,9 @@ export namespace ServerRoutes {
   export const indexJs = `${root}index.js`;
   export const manifest = `${root}manifest.json`;
   export const catchAll = `${root}*`;
+  export const iconRoute = `${root}:icon`;
+  export const formatIconRoute = (iconName: string) =>
+    iconRoute.replace(":icon", iconName);
 
   export namespace Api {
     export const root = `${ServerRoutes.root}api/`;
