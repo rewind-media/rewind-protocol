@@ -98,11 +98,17 @@ export interface SeasonDetails {
   readonly actor?: Actor[];
 }
 
+interface SubtitleFile {
+  readonly location: FileLocation;
+  readonly name: string;
+}
+
 export interface EpisodeInfo extends MediaInfo {
   readonly showId: string;
   readonly seasonId: string;
   readonly episodeImageId?: string;
   readonly details?: EpisodeDetails;
+  readonly subtitleFiles: SubtitleFile[];
 }
 
 export interface SeriesDetails {
