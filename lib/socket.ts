@@ -7,14 +7,16 @@ import {
   EpisodeInfo,
   SeasonInfo,
   UserPermissions,
+  FileLocation,
 } from "./models";
+import { FFProbeStream } from "ffprobe";
 
 export interface ServerToClientEvents {
-  createStreamCallback: (res: CreateHlsStreamResponse) => void;
+  createStreamCallback: (res: CreateEpisodeHlsStreamResponse) => void;
 }
 
 export interface ClientToServerEvents {
-  createStream: (req: CreateHlsStreamRequest) => void;
+  createStream: (req: CreateEpisodeHlsStreamRequest) => void;
   cancelStream: () => void;
 }
 
@@ -29,12 +31,16 @@ export interface ChangePasswordRequest {
   newPassword: string;
 }
 
-export interface CreateHlsStreamResponse {
+export interface CreateEpisodeHlsStreamResponse {
   streamProps: HlsStreamProps;
 }
 
-export interface CreateHlsStreamRequest {
+export interface CreateEpisodeHlsStreamRequest {
   library: string;
   mediaId: string;
+  videoStream?: FFProbeStream & { codec_type: "video" };
+  audioStream?: FFProbeStream & { codec_type: "audio" };
+  subtitles?: (FFProbeStream & { codec_type: "subtitle" }) | FileLocation;
+  subtitleFileLocation?: FileLocation;
   startOffset: number;
 }

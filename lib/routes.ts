@@ -166,13 +166,37 @@ export namespace ServerRoutes {
 
     export namespace Stream {
       export const root = `${Api.root}streams/`;
-      export const m3u8FileName = `stream.m3u8`;
+      export const m3u8IndexFileName = `index.m3u8`;
+      export const m3u8StreamFileName = `stream.m3u8`;
+      export const m3u8SubtitleFileName = `subs.m3u8`;
+      export const subtitleFileName = `subs.vtt`;
       export const initMp4FileName = `init-stream.mp4`;
       export const segmentFileExt = `.m4s`;
-      export const m3u8 = `${root}:id/${m3u8FileName}`;
+
+      export const m3u8Index = `${root}:id/${m3u8IndexFileName}`;
+      export const formatM3u8IndexPath = (id: string) =>
+        m3u8Index.replace(":id", id);
+
+      export const m3u8Stream = `${root}:id/${m3u8StreamFileName}`;
+      export const formatM3u8StreamPath = (id: string) =>
+        m3u8Stream.replace(":id", id);
+
+      export const m3u8Subtitle = `${root}:id/${m3u8SubtitleFileName}`;
+      export const formatM3u8SubtitlePath = (id: string) =>
+        m3u8Subtitle.replace(":id", id);
+
+      export const subtitle = `${root}:id/${subtitleFileName}`;
+      export const formatSubtitlePath = (id: string) =>
+        subtitle.replace(":id", id);
+
       export const initMp4 = `${root}:id/${initMp4FileName}`;
+      export const formatInitMp4Path = (id: string) =>
+        initMp4.replace(":id", id);
+
       export const segment = `${root}:id/:segment${segmentFileExt}`;
-      export const formatM3u8Path = (id: string) => m3u8.replace(":id", id);
+
+      export const formatSegmentPath = (id: string, segment: number) =>
+        initMp4.replace(":id", id).replace(":segment", segment.toString());
     }
 
     export namespace Image {

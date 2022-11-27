@@ -1,4 +1,4 @@
-import { FFProbeResult } from "ffprobe";
+import { FFProbeResult, FFProbeStream } from "ffprobe";
 
 export interface FfProbeInfoFormat {
   readonly duration?: number;
@@ -16,6 +16,11 @@ export interface UserPermissions {
 export interface StreamProps {
   readonly id: string;
   readonly mediaInfo: MediaInfo;
+  readonly audioStream?: FFProbeStream & { codec_type: "audio" };
+  readonly videoStream?: FFProbeStream & { codec_type: "video" };
+  readonly subtitle?:
+    | FFProbeStream //  & { codec_type: "subtitle" } // TODO fix this in type definitions
+    | FileLocation;
   readonly startOffset: number; // Seconds
   readonly duration: number; // Seconds
 }
@@ -48,10 +53,18 @@ export interface LibraryData {
 }
 
 export interface LocalPath {
-  localPath: string;
+  readonly localPath: string;
 }
 
 export type FileLocation = LocalPath;
+export function isFileLocation(t: any): t is FileLocation {
+  try {
+    const it = t as FileLocation;
+    return isLocalPath(it);
+  } catch (e) {
+    return false;
+  }
+}
 export function isLocalPath(t: FileLocation): t is LocalPath {
   return !!t.localPath;
 }
