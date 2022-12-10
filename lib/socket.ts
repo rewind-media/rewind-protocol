@@ -20,17 +20,6 @@ export interface ClientToServerEvents {
   cancelStream: () => void;
 }
 
-export interface CreateUserRequest {
-  username: string;
-  password: string;
-  permissions: UserPermissions;
-}
-
-export interface ChangePasswordRequest {
-  oldPassword: string;
-  newPassword: string;
-}
-
 export interface CreateEpisodeHlsStreamResponse {
   streamProps: HlsStreamProps;
 }
