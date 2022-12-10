@@ -203,6 +203,12 @@ export namespace ServerRoutes {
       export const root = `${Api.root}image/`;
       export const image = `${root}:id`;
       export const formatImagePath = (id: string) => image.replace(":id", id);
+
+      export interface GetParams {
+        readonly id: string;
+      }
+
+      export type GetResponse = Buffer;
     }
   }
 }
