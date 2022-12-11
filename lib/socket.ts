@@ -1,14 +1,4 @@
-import {
-  ClientUser,
-  FileInfo,
-  HlsStreamProps,
-  Library,
-  ShowInfo,
-  EpisodeInfo,
-  SeasonInfo,
-  UserPermissions,
-  FileLocation,
-} from "./models";
+import { HlsStreamProps, FileLocation } from "./models";
 import { FFProbeStream } from "ffprobe";
 
 export interface ServerToClientEvents {
@@ -29,7 +19,7 @@ export interface CreateEpisodeHlsStreamRequest {
   mediaId: string;
   videoStream?: FFProbeStream & { codec_type: "video" };
   audioStream?: FFProbeStream & { codec_type: "audio" };
-  subtitles?: (FFProbeStream & { codec_type: "subtitle" }) | FileLocation;
+  subtitles?: FFProbeStream | FileLocation; // TODO should be (FFProbeStream & { codec_type: "subtitle" }) | FileLocation
   subtitleFileLocation?: FileLocation;
   startOffset: number;
 }

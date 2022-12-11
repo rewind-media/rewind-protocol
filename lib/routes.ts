@@ -7,8 +7,6 @@ import {
   ClientUser,
 } from "./models";
 
-const formatParam = (paramName: string) => `:${paramName}`;
-
 export namespace ServerRoutes {
   export const root = `/`;
   export const indexHtml = `${root}index.html`;
