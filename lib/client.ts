@@ -1,4 +1,4 @@
-import { ServerRoutes } from "./routes";
+import { ServerRoutes } from "./routes.js";
 
 export class HttpClient {
   static getShow = (showId: string) =>

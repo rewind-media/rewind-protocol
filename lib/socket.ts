@@ -1,4 +1,4 @@
-import { HlsStreamProps, FileLocation } from "./models";
+import { HlsStreamProps, FileLocation } from "./models.js";
 import { FFProbeStream } from "ffprobe";
 
 export interface ServerToClientEvents {

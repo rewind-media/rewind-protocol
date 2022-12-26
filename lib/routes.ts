@@ -5,7 +5,7 @@ import {
   ShowInfo,
   User,
   ClientUser,
-} from "./models";
+} from "./models.js";
 
 export namespace ServerRoutes {
   export const root = `/`;
