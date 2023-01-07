@@ -5,6 +5,7 @@ import {
   ShowInfo,
   User,
   ClientUser,
+  LibraryType,
 } from "./models.js";
 
 export namespace ServerRoutes {
@@ -58,6 +59,20 @@ export namespace ServerRoutes {
 
     export namespace Library {
       const root = `${Api.root}lib/`;
+
+      export const create = `${root}create`;
+
+      export interface CreateRequest {
+        readonly name: string;
+        readonly rootPaths: string[];
+        readonly type: LibraryType;
+      }
+
+      export const del = `${root}delete`;
+
+      export interface DeleteRequest {
+        readonly names: string[];
+      }
 
       export interface ListResponse {
         readonly libraries: Library[];

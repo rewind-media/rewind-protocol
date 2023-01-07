@@ -34,6 +34,12 @@ export class HttpClient {
       .then((it) => it.json())
       .then((it) => it as ServerRoutes.Api.Episode.ListResponse);
 
+  static createLibrary = (request: ServerRoutes.Api.Library.CreateRequest) =>
+    fetch(ServerRoutes.Api.Library.create, {
+      body: JSON.stringify(request),
+      ...HttpClient.POST_HEADERS,
+    });
+
   static createUser = (request: ServerRoutes.Api.User.CreateRequest) =>
     fetch(ServerRoutes.Api.User.create, {
       body: JSON.stringify(request),
@@ -44,6 +50,12 @@ export class HttpClient {
     fetch(ServerRoutes.Api.User.list)
       .then((it) => it.json())
       .then((it) => it as ServerRoutes.Api.User.ListResponse);
+
+  static deleteLibraries = (req: ServerRoutes.Api.Library.DeleteRequest) =>
+    fetch(ServerRoutes.Api.Library.del, {
+      body: JSON.stringify(req),
+      ...HttpClient.POST_HEADERS,
+    });
 
   static deleteUsers = (req: ServerRoutes.Api.User.DeleteRequest) =>
     fetch(ServerRoutes.Api.User.del, {
