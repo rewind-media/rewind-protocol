@@ -69,10 +69,51 @@ export class HttpClient {
       ...HttpClient.POST_HEADERS,
     });
 
+  static createStream = (req: ServerRoutes.Api.Stream.CreateRequest) =>
+    fetch(ServerRoutes.Api.Stream.create, {
+      body: JSON.stringify(req),
+      ...HttpClient.POST_HEADERS,
+    })
+      .then((it) => it.json())
+      .then((it) => it as ServerRoutes.Api.Stream.CreateResponse);
+  static deleteStream = (streamId: string) =>
+    fetch(
+      ServerRoutes.Api.Stream.formatDelPath(streamId),
+      HttpClient.DELETE_HEADERS
+    );
+
+  static heartbeatStream: (streamId: string) => Promise<StreamStatus> = (
+    streamId: string
+  ) =>
+    fetch(
+      ServerRoutes.Api.Stream.formatHeartbeatPath(streamId),
+      HttpClient.POST_HEADERS
+    ).then((res) => {
+      switch (res.status) {
+        case 204:
+          return "PENDING";
+        case 200:
+          return "AVAILABLE";
+        case 205:
+          return "CANCELED";
+        default:
+          throw {
+            cause: `Unexpected status code: ${res.status}`,
+            response: res,
+          };
+      }
+    });
+
   private static POST_HEADERS = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
   };
+
+  private static DELETE_HEADERS = {
+    method: "DELETE",
+  };
 }
+
+export type StreamStatus = "PENDING" | "AVAILABLE" | "CANCELED";

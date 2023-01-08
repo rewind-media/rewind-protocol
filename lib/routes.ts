@@ -6,7 +6,10 @@ import {
   User,
   ClientUser,
   LibraryType,
+  HlsStreamProps,
+  FileLocation,
 } from "./models.js";
+import { FFProbeStream } from "ffprobe";
 
 export namespace ServerRoutes {
   export const root = `/`;
@@ -179,6 +182,38 @@ export namespace ServerRoutes {
 
     export namespace Stream {
       export const root = `${Api.root}streams/`;
+
+      export const create = `${root}create`;
+
+      export interface CreateResponse {
+        streamProps: HlsStreamProps;
+      }
+
+      export interface CreateRequest {
+        library: string;
+        mediaId: string;
+        videoStream?: FFProbeStream & { codec_type: "video" };
+        audioStream?: FFProbeStream & { codec_type: "audio" };
+        subtitles?: FFProbeStream | FileLocation; // TODO should be (FFProbeStream & { codec_type: "subtitle" }) | FileLocation
+        subtitleFileLocation?: FileLocation;
+        startOffset: number;
+      }
+
+      export interface DelParams {
+        readonly streamId: string;
+      }
+
+      export const del = `${root}del/:streamId`;
+      export const formatDelPath = (streamId: string) =>
+        del.replace(":streamId", streamId);
+
+      export interface HeartbeatParams {
+        readonly streamId: string;
+      }
+      export const heartbeat = `${root}heartbeat/:streamId`;
+      export const formatHeartbeatPath = (streamId: string) =>
+        heartbeat.replace(":streamId", streamId);
+
       export const m3u8IndexFileName = `index.m3u8`;
       export const m3u8StreamFileName = `stream.m3u8`;
       export const m3u8SubtitleFileName = `subs.m3u8`;
